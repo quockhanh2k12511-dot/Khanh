@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Chúc mừng sinh nhật em iu ❤️</title>
+<style>
+    body {
+        background-color: pink;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    .background-img {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: contain;
+        z-index: -1;
+        pointer-events: none;
+    }
+    .floating {
+        position: absolute;
+        font-size: 40px;
+        animation: float 10s linear infinite;
+    }
+    @keyframes float {
+        0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(-10vh) translateX(20px); opacity: 0; }
+    }
+    #message {
+        position: absolute;
+        font-size: 40px;
+        font-weight: bold;
+        color: red;
+        white-space: nowrap;
+        opacity: 0;
+        transition: all 2s ease;
+    }
+</style>
+</head>
+<body>
+    <img class="background-img" src="Nhung.jpg" alt="background">
+
+    <!-- Nhạc nền -->
+    <audio id="bg-music" loop>
+        <source src="motdoi.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="message"></div>
+
+<script>
+    const messages = [
+        "Hôm nay là ngày đặc biệt của em eo! 🎉",
+        "Anh muốn nói với em là ❤️",
+        "Chúc mừng sinh nhật em 🎂",
+        "Chúc em mãi xinh và hạnh phúc ✨",
+        "Yêu em ❤️"
+    ];
+
+    const directions = ["left", "right", "top", "bottom"];
+    let index = 0;
+
+    function showMessage() {
+        const msg = document.getElementById("message");
+        msg.textContent = messages[index];
+        const dir = directions[Math.floor(Math.random() * directions.length)];
+        msg.style.opacity = 0;
+        msg.style.transition = "none";
+
+        if (dir === "left") {
+            msg.style.left = "-300px";
+            msg.style.top = "50%";
+            msg.style.transform = "translateY(-50%)";
+        } else if (dir === "right") {
+            msg.style.left = "100vw";
+            msg.style.top = "50%";
+            msg.style.transform = "translateY(-50%)";
+        } else if (dir === "top") {
+            msg.style.top = "-100px";
+            msg.style.left = "50%";
+            msg.style.transform = "translateX(-50%)";
+        } else if (dir === "bottom") {
+            msg.style.top = "100vh";
+            msg.style.left = "50%";
+            msg.style.transform = "translateX(-50%)";
+        }
+
+        setTimeout(() => {
+            msg.style.transition = "all 2s ease";
+            msg.style.left = "50%";
+            msg.style.top = "50%";
+            msg.style.transform = "translate(-50%, -50%)";
+            msg.style.opacity = 1;
+        }, 50);
+
+        let delay = 4000;
+        if (index === messages.length - 1) delay = 6000;
+        index = (index + 1) % messages.length;
+        setTimeout(showMessage, delay);
+    }
+
+    function createFloating() {
+        const icons = ["❤️", "🎂", "💖", "🍰"];
+        for (let i = 0; i < 30; i++) {
+            const span = document.createElement("span");
+            span.className = "floating";
+            span.textContent = icons[Math.floor(Math.random() * icons.length)];
+            span.style.left = Math.random() * 100 + "vw";
+            span.style.animationDuration = (8 + Math.random() * 5) + "s";
+            span.style.animationDelay = Math.random() * 10 + "s";
+            document.body.appendChild(span);
+        }
+    }
+
+    // Play nhạc khi người dùng chạm vào
+    window.addEventListener('load', function() {
+        const audio = document.getElementById('bg-music');
+        document.body.addEventListener('click', function() {
+            audio.play().catch(err => console.log(err));
+        }, { once: true });
+    });
+
+    createFloating();
+    showMessage();
+</script>
+</body>
+</html>
