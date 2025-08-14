@@ -61,7 +61,7 @@
         "Yêu em ❤️"
     ];
 
-    const directions = ["left", "right", "top", "bottom"];
+    const directions = ["top", "bottom"];
     let index = 0;
 
     function showMessage() {
@@ -71,15 +71,7 @@
         msg.style.opacity = 0;
         msg.style.transition = "none";
 
-        if (dir === "left") {
-            msg.style.left = "-300px";
-            msg.style.top = "50%";
-            msg.style.transform = "translateY(-50%)";
-        } else if (dir === "right") {
-            msg.style.left = "100vw";
-            msg.style.top = "50%";
-            msg.style.transform = "translateY(-50%)";
-        } else if (dir === "top") {
+        if (dir === "top") {
             msg.style.top = "-100px";
             msg.style.left = "50%";
             msg.style.transform = "translateX(-50%)";
@@ -91,14 +83,13 @@
 
         setTimeout(() => {
             msg.style.transition = "all 2s ease";
-            msg.style.left = "50%";
             msg.style.top = "50%";
             msg.style.transform = "translate(-50%, -50%)";
             msg.style.opacity = 1;
         }, 50);
 
         let delay = 4000;
-        if (index === messages.length - 1) delay = 6000;
+        if (index === messages.length - 1) delay = 7000;
         index = (index + 1) % messages.length;
         setTimeout(showMessage, delay);
     }
