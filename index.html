@@ -117,13 +117,14 @@
     }
 
     // Play nhạc khi người dùng chạm vào
-    window.addEventListener('load', function() {
-        const audio = document.getElementById('bg-music');
-        document.body.addEventListener('click', function() {
-            audio.play().catch(err => console.log(err));
-        }, { once: true });
+    const audio = document.getElementById('bg-music');
+    audio.preload = "auto";
+    audio.load();
+    document.addEventListener('click', () => {
+    if (audio.paused) {
+        audio.play().catch(err => console.log("Không thể tự phát:", err));
+    }
     });
-
     createFloating();
     showMessage();
 </script>
