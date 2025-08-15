@@ -131,8 +131,10 @@
     });
     current = (current + 1) % bgImgs.length;
     }
+    window.onload = function() {
     changeBackground();
     setInterval(changeBackground, 2000);
+    }
 </script>
 </body>
 </html>
