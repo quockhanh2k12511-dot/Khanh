@@ -21,6 +21,10 @@
         pointer-events: none;
 	transition: opacity 2s ease;
     }
+    @media (max-width: 768px) {
+        .background-img {
+            object-fit: cover;
+    }
     .floating {
         position: absolute;
         font-size: 40px;
@@ -34,7 +38,7 @@
     }
     #message {
         position: absolute;
-        font-size: 40px;
+        font-size: 45px;
         font-weight: bold;
         color: red;
         white-space: nowrap;
@@ -87,7 +91,7 @@
 
         setTimeout(() => {
             msg.style.transition = "all 2s ease";
-            msg.style.top = "50%";
+            msg.style.top = "30%";
             msg.style.transform = "translate(-50%, -50%)";
             msg.style.opacity = 1;
         }, 50);
