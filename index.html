@@ -44,10 +44,13 @@
 </style>
 </head>
 <body>
-    <img class="background-img" src="Nhung.jpg" alt="background">
+    <img class="background-img" id="bg1" src="Nhung.jpg" alt="background" style="opacity:1;">
+    <img class="background-img" id="bg2" src="Nhung1.jpg" alt="background" style="opacity:0;">
+    <img class="background-img" id="bg3" src="Nhung2.jpg" alt="background" style="opacity:0;">
+    <img class="background-img" id="bg4" src="Nhung3.jpg" alt="background" style="opacity:0;">
  
     <!-- Nhạc nền -->
-    <audio id="bg-music" loop>
+    <audio id="bg-music" loop>	
         <source src="motdoi.mp3" type="audio/mpeg">
     </audio>
 
@@ -119,17 +122,17 @@
     });
     createFloating();
     showMessage();
-    const bgDiv = document.querySelector('.background-img');
-    const images = ["Nhung1.jpg", "Nhung2.jpg", "Nhung3.jpg"];
-    let currentImage = 0;
+    const bgImgs = document.querySelectorAll('.background-img');
+    let current = 0;
 
-    function changeBackground()
-    {
-      bgDiv.src = images[currentImage];
-      currentImage = (currentImage + 1) % images.length;
+    function changeBackground() {
+    bgImgs.forEach((img, i) => {
+        img.style.opacity = (i === current) ? 1 : 0;
+    });
+    current = (current + 1) % bgImgs.length;
     }
-    setInterval(changeBackground, 2000);
     changeBackground();
+    setInterval(changeBackground, 2000);
 </script>
 </body>
 </html>
